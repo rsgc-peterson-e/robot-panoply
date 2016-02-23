@@ -5,6 +5,7 @@ void setup() {
   int yOff = 475; //used in second for loop to to take care of incrimenting y variable
   int slide; //variable that will store what slide the user is on for the storytelling of Romeo and Juliet
   EPRobot ethanBot = new EPRobot();
+  // NOTE: for loops should be adjusted next class to scale bots giving perception of image depth
   for (int i = 0; i < 375; i += 125) { //draws the left 3 robots of the council
     ethanBot.drawAt(xOff + i, i + 100, 0.5, 0.5);
   }
