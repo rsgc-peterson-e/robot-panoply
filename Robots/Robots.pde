@@ -2,27 +2,29 @@ int xOff = 25; //variable for x offset
 int yOff = 550; //used in second for loop to to take care of incrimenting y variable
 int yOff2 = 50; // second y variable for other loop
 int scene = 0; //variable that will store what slide the user is on for the storytelling of Romeo and Juliet
+int nextX = 920;
+int nextY = 300;
+int nextWidth = 60;
+int nextHeight = 30;
+int prevX = 20;
+int prevY = 300;
+int prevWidth = 60;
+int prevHeight = 30;
 float distance = 0.5;
 EPRobot ethanBot = new EPRobot();
 TMRobots timBot = new TMRobots();
 
 void setup() { //runs once
-  size(1000,700);
+  size(1000, 700);
   background(255);
 }
 
 void draw() {
   background(255); //clear background
   //draw next and prev scene buttons
-  fill(255);
-  rect(20, 300, 60, 30); // previous scene button
-  rect(920, 300, 60, 30); // next scene button
-  // add text to the buttons
-  textSize(20);
-  fill(0);
-  //add text to the buttons
-  text("Next", 925, 320);
-  text("Prev", 25, 320);
+  buttons();
+  //draw robot council
+  robotCouncil();
 }
 
 void mouseClicked() { //runs every time mouse is clicked (pressed and released)
@@ -49,6 +51,32 @@ boolean mouseOverRect(int rectX, int rectY, int rectWidth, int rectHeight) {
     return true;
   }else{
     return false;
+  }
+}
+
+void buttons() { //draws the next and prev buttons and listens for the mouse hovering over them
+  fill(255);
+  rect(prevX, prevY, prevWidth, prevHeight); // previous scene button
+  rect(nextX, nextY, nextWidth, nextHeight); // next scene button
+  // add text to the rectangles creating the impression of a button
+  textSize(20);
+  fill(0);
+  //add text to the buttons
+  text("Next", nextX + 5, nextY + 20);
+  text("Prev", prevX + 5, prevY + 20);
+  if (mouseOverRect(nextX, nextY, nextWidth, nextHeight)) { //check if mouse is over next button
+    fill(209);
+    rect(nextX, nextY, nextWidth, nextHeight); //draw new grey rect to make it seem as though the button turns grey when the mouse hovers over
+    fill(0); //change text color to black
+    //redraw text so it is not overlapped by new rect
+    text("Next", nextX + 5, nextY + 20);
+
+  }
+  if (mouseOverRect(prevX, prevY, prevWidth, prevHeight)) { //check if mouse is over prev button
+    fill(209);
+    rect(prevX, prevY, prevWidth, prevHeight);
+    fill(0);
+    text("Prev", prevX + 5, prevY + 20);
   }
 }
 
