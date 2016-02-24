@@ -13,21 +13,28 @@ void setup() { //runs once
 
 void draw() {
   background(255); //clear background
-  if (scene == 0) {
-    robotCouncil();
-    if (keyPressed) {
-      if (key == CODED) {
-        if (keyCode == RIGHT) {
-          scene = 1;
-        }
-      }
-    }
-  }
-  if (scene == 1) {
-    scene1();
-  }
+  //draw next and prev scene buttons
+  fill(255);
+  rect(20, 300, 60, 30); // previous scene button
+  rect(920, 300, 60, 30);
+  // if (scene == 0) {
+  //   robotCouncil();
+  //   if (keyPressed) {
+  //     if (key == CODED) {
+  //       if (keyCode == RIGHT) {
+  //         scene = 1;
+  //       }
+  //     }
+  //   }
+  // }
+  // if (scene == 1) {
+  //   scene1();
+  // }
 }
 
+void mouseClicked() { //runs every time mouse is clicked (pressed and released)
+
+}
 
 void robotCouncil() { // function draws a council of my robot in a porabola type from
   for (int i = 350; i > 125; i -= 75) { // left 3 bots of robot council
