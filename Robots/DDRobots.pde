@@ -2,7 +2,7 @@ class DDRobot {
 
   void DDRobot() {
   }
-  
+
   void drawAt(int x, int y) {
 
     //This Robot is BB8
@@ -22,7 +22,7 @@ class DDRobot {
     float r = 1;
 
     //Scale of bots
-    scale(1.6 * r);
+    scale(1 * r);
 
     //Lighting, robot bloom effects
     //slightly fiddly, blur broken between layers
