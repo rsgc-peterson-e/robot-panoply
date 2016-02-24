@@ -16,20 +16,13 @@ void draw() {
   //draw next and prev scene buttons
   fill(255);
   rect(20, 300, 60, 30); // previous scene button
-  rect(920, 300, 60, 30);
-  // if (scene == 0) {
-  //   robotCouncil();
-  //   if (keyPressed) {
-  //     if (key == CODED) {
-  //       if (keyCode == RIGHT) {
-  //         scene = 1;
-  //       }
-  //     }
-  //   }
-  // }
-  // if (scene == 1) {
-  //   scene1();
-  // }
+  rect(920, 300, 60, 30); // next scene button
+  // add text to the buttons
+  textSize(20);
+  fill(0);
+  //add text to the buttons
+  text("Next", 925, 320);
+  text("Prev", 25, 320);
 }
 
 void mouseClicked() { //runs every time mouse is clicked (pressed and released)
@@ -49,6 +42,14 @@ void robotCouncil() { // function draws a council of my robot in a porabola type
   }
   distance = 0.5; //reset variable values so the function can be looped infinitely
   yOff = 550;
+}
+
+boolean mouseOverRect(int rectX, int rectY, int rectWidth, int rectHeight) {
+  if (mouseX >= rectX && mouseX <= rectX + rectWidth && mouseY >= rectY && mouseY <= rectY + rectHeight) {
+    return true;
+  }else{
+    return false;
+  }
 }
 
 void scene1() {
