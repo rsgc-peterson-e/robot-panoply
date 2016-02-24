@@ -16,6 +16,7 @@ void draw() { //infinite loop
 }
 
 void slide1() { // Each slide will have its own function which will draw the correct content depending on what slide the user is on
+  // this slide will draw the robot council
   for (int i = 350; i > 125; i -= 75) { // left 3 bots of robot council
     distance = distance - 0.1;
     yOff = yOff - 125;
@@ -26,5 +27,6 @@ void slide1() { // Each slide will have its own function which will draw the cor
     distance = distance + 0.1;
     ethanBot.drawAt(xOff + 50 + (775 - j), (100 + j) - yOff2, 0.1 + distance, 0.1 + distance);
   }
-  noLoop();
+  distance = 0.5; //reset variable values so the function can be looped infinitely
+  yOff = 550;
 }
