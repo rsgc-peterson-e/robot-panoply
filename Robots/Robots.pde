@@ -106,5 +106,7 @@ void scene1() {
     textFont(cursive);
     fill(0); // set text to black
     text("The Capulets", 100, 350);
+    text("Juliet", 300, 375);
+    // begin drawing out the Montague Family
   }
 }
