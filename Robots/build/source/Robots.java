@@ -18,64 +18,122 @@ int xOff = 25; //variable for x offset
 int yOff = 550; //used in second for loop to to take care of incrimenting y variable
 int yOff2 = 50; // second y variable for other loop
 int scene = 0; //variable that will store what slide the user is on for the storytelling of Romeo and Juliet
+int nextX = 920;
+int nextY = 300;
+int nextWidth = 60;
+int nextHeight = 30;
+int prevX = 20;
+int prevY = 300;
+int prevWidth = 60;
+int prevHeight = 30;
 float distance = 0.5f;
+PFont cursive;
 EPRobot ethanBot = new EPRobot();
 TMRobots timBot = new TMRobots();
+KCRobot kernBot = new KCRobot();
+OBRobot owenBot = new OBRobot();
+
 
 public void setup() { //runs once
   
+  cursive = createFont("cursive.ttf", 32); //create the font using the font file in the sketch folder
   background(255);
 }
 
 public void draw() {
   background(255); //clear background
-  if (scene == 0) {
-    robotCouncil();
-    if (keyPressed) {
-      if (key == CODED) {
-        if (keyCode == RIGHT) {
-          scene = 1;
-        }
-      }
-    }
+  //draw next and prev scene buttons
+  buttons();
+  //draw robot council
+  robotCouncil();
+  //draw first scene as long as user has navigated to it
+  scene1();
+}
+
+public void mouseClicked() { //runs every time mouse is clicked (pressed and released)
+  if (mouseOverRect(nextX, nextY, nextWidth, nextHeight)) { //checks if mouse has been clicked while over the next button
+    scene++;
   }
-  if (scene == 1) {
-    scene1();
+  if (mouseOverRect(prevX, prevY, prevWidth, prevHeight) && scene > 0) {
+    scene--;
   }
 }
 
-
 public void robotCouncil() { // function draws a council of my robot in a porabola type from
-  for (int i = 350; i > 125; i -= 75) { // left 3 bots of robot council
-    distance = distance - 0.1f;
-    yOff = yOff - 125;
-    ethanBot.drawAt(i - 75, yOff, distance, distance);
+  if (scene == 0) {
+    for (int i = 350; i > 125; i -= 75) { // left 3 bots of robot council
+      distance = distance - 0.1f;
+      yOff = yOff - 125;
+      ethanBot.drawAt(i - 75, yOff, distance, distance);
+    }
+    distance = 0;
+    for (int j = 125; j < 500; j += 125) { // right 3 robots of the council
+      distance = distance + 0.1f;
+      ethanBot.drawAt(xOff + 50 + (775 - j), (100 + j) - yOff2, 0.1f + distance, 0.1f + distance);
+    }
+    distance = 0.5f; //reset variable values so the function can be looped infinitely
+    yOff = 550;
   }
-  distance = 0;
-  for (int j = 125; j < 500; j += 125) { // right 3 robots of the council
-    distance = distance + 0.1f;
-    ethanBot.drawAt(xOff + 50 + (775 - j), (100 + j) - yOff2, 0.1f + distance, 0.1f + distance);
+}
+
+public boolean mouseOverRect(int rectX, int rectY, int rectWidth, int rectHeight) {
+  if (mouseX >= rectX && mouseX <= rectX + rectWidth && mouseY >= rectY && mouseY <= rectY + rectHeight) {
+    return true;
+  }else{
+    return false;
   }
-  distance = 0.5f; //reset variable values so the function can be looped infinitely
-  yOff = 550;
+}
+
+public void buttons() { //draws the next and prev buttons and listens for the mouse hovering over them
+  fill(255);
+  stroke(5);
+  rect(prevX, prevY, prevWidth, prevHeight); // previous scene button
+  rect(nextX, nextY, nextWidth, nextHeight); // next scene button
+  // add text to the rectangles creating the impression of a button
+  textSize(20);
+  fill(0);
+  //add text to the buttons
+  text("Next", nextX + 5, nextY + 20);
+  text("Prev", prevX + 5, prevY + 20);
+  if (mouseOverRect(nextX, nextY, nextWidth, nextHeight)) { //check if mouse is over next button
+    fill(209);
+    rect(nextX, nextY, nextWidth, nextHeight); //draw new grey rect to make it seem as though the button turns grey when the mouse hovers over
+    fill(0); //change text color to black
+    //redraw text so it is not overlapped by new rect
+    text("Next", nextX + 5, nextY + 20);
+  }
+  if (mouseOverRect(prevX, prevY, prevWidth, prevHeight)) { //check if mouse is over prev button
+    fill(209);
+    rect(prevX, prevY, prevWidth, prevHeight);
+    fill(0);
+    text("Prev", prevX + 5, prevY + 20);
+  }
 }
 
 public void scene1() {
-  timBot.drawAt(25, 300, 1, 1);
+  if (scene == 1) {
+    timBot.drawAt(230, 400, 1, 1); // Juliet
+    owenBot.drawAt(-70, 400, 0.7f, 0.7f); // Father Capulet
+    kernBot.drawAt(-75, 420, 0.7f, 0.7f); // Mother Capulet
+    //draw text with cursive font
+    textFont(cursive);
+    fill(0); // set text to black
+    text("The Capulets", 100, 350);
+  }
 }
 class ASPRobot { 
   public void ASPRobot() {
-  } 
+  }
 
   //Draw At
   public void drawAt(int x, int y, float horizontalScale, float verticalScale) {
-    //body 
-    strokeWeight(2); 
+    //body
+    strokeWeight(2);
     fill(100);
-    ellipse((300+x)*horizontalScale, (400+y)*verticalScale, horizontalScale*400, verticalScale*400); 
+    ellipse((300+x)*horizontalScale, (400+y)*verticalScale, horizontalScale*400, verticalScale*400);
 
 //head
-    fill(255); 
+    fill(255);
     ellipse((300+y)*horizontalScale, (150+y)*verticalScale, horizontalScale*150, verticalScale*150);
 
  //antenae
@@ -83,11 +141,11 @@ class ASPRobot {
     line((x+350)*horizontalScale, (y+94)*verticalScale, (x+350)*horizontalScale, (y+60)*verticalScale);
 
 //left eye
-    fill(20); 
+    fill(20);
     ellipse((x+275)*horizontalScale, (y+130)*verticalScale, 20*horizontalScale, 25*verticalScale);
 
  //right eye
-    fill(20); 
+    fill(20);
     ellipse((x+325)*horizontalScale, (y+130)*verticalScale, 20*horizontalScale, 25*verticalScale);
 
 //nose
@@ -100,27 +158,27 @@ class ASPRobot {
     line((x+100)*horizontalScale, (y+250)*verticalScale, (x+100)*horizontalScale, (y+234)*verticalScale); //left arm finger middle
 
     //right arm
-    line((x+474)*horizontalScale, (y+300)*verticalScale, (x+500)*horizontalScale, (y+250)*verticalScale); //right arm 
+    line((x+474)*horizontalScale, (y+300)*verticalScale, (x+500)*horizontalScale, (y+250)*verticalScale); //right arm
     line((x+500)*horizontalScale, (y+250)*verticalScale, (x+490)*horizontalScale, (y+238)*verticalScale); //right arm finger left
     line((x+500)*horizontalScale, (y+250)*verticalScale, (x+510)*horizontalScale, (y+238)*verticalScale); //right arm finger right
     line((x+500)*horizontalScale, (y+250)*verticalScale, (x+500)*horizontalScale, (y+234)*verticalScale); //right arm finger middle
 
     //details on body
 
-    fill(50); 
-    ellipse((x+300)*horizontalScale, (y+400)*verticalScale, 300*horizontalScale, 300*verticalScale); //black circle 
+    fill(50);
+    ellipse((x+300)*horizontalScale, (y+400)*verticalScale, 300*horizontalScale, 300*verticalScale); //black circle
 
     stroke(255);
     fill(255);
     ellipse((x+250)*horizontalScale, (y+300)*verticalScale, 50*horizontalScale, 50*verticalScale); //circle top left white
     ellipse((x+350)*horizontalScale, (y+500)*verticalScale, 50*horizontalScale, 50*verticalScale); //circle bottom right white
-    
-    stroke (50); 
+
+    stroke (50);
     fill(5);
     ellipse((x+250)*horizontalScale, (y+300)*verticalScale, 10*horizontalScale, 25*verticalScale); //circle top left black
     ellipse((x+350)*horizontalScale, (y+500)*verticalScale, 10*horizontalScale, 25*verticalScale); //circle bottom right black
-    
-    stroke(255); 
+
+    stroke(255);
     line((x+250)*horizontalScale, (y+325)*verticalScale, (x+350)*horizontalScale, (y+472)*verticalScale); //connecting line
   }
 }
@@ -145,7 +203,7 @@ class BDRobot {
     fill(169);
     rect(xAnchor + 200 * horizontalScale, yAnchor + 200 * verticalScale, 200 * horizontalScale, 150 * verticalScale);
     fill(130);
-    ellipse(xAnchor + 250 * horizontalScale, yAnchor + 240 * verticalScale, 20 * horizontalScale, 20 * verticalScale); 
+    ellipse(xAnchor + 250 * horizontalScale, yAnchor + 240 * verticalScale, 20 * horizontalScale, 20 * verticalScale);
     ellipse(xAnchor + 352 * horizontalScale, yAnchor + 240 * verticalScale, 20 * horizontalScale, 20 * verticalScale);
     stroke(130);
     strokeWeight(5);
@@ -728,7 +786,7 @@ class TMRobots {
     //text("( \u0361\u00b0 \u035c\u0296 \u0361\u00b0)", posX + 100 * vertScale, posY + 100 * horizScale); // type "le lenny" on the robot's torso
   }
 }
-  public void settings() {  size(1000,700); }
+  public void settings() {  size(1000, 700); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "Robots" };
     if (passedArgs != null) {

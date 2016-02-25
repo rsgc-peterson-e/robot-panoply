@@ -19,7 +19,7 @@ class BDRobot {
     fill(169);
     rect(xAnchor + 200 * horizontalScale, yAnchor + 200 * verticalScale, 200 * horizontalScale, 150 * verticalScale);
     fill(130);
-    ellipse(xAnchor + 250 * horizontalScale, yAnchor + 240 * verticalScale, 20 * horizontalScale, 20 * verticalScale); 
+    ellipse(xAnchor + 250 * horizontalScale, yAnchor + 240 * verticalScale, 20 * horizontalScale, 20 * verticalScale);
     ellipse(xAnchor + 352 * horizontalScale, yAnchor + 240 * verticalScale, 20 * horizontalScale, 20 * verticalScale);
     stroke(130);
     strokeWeight(5);
