@@ -27,7 +27,8 @@ int prevY = 300;
 int prevWidth = 60;
 int prevHeight = 30;
 float distance = 0.5f;
-PFont cursive;
+PFont cursive; // will be used for special titles to add more the scene
+PFont quicksand; //will be used as default font
 EPRobot ethanBot = new EPRobot();
 TMRobots timBot = new TMRobots();
 KCRobot kernBot = new KCRobot();
@@ -37,6 +38,7 @@ OBRobot owenBot = new OBRobot();
 public void setup() { //runs once
   
   cursive = createFont("cursive.ttf", 32); //create the font using the font file in the sketch folder
+  quicksand = createFont("quicksand.otf", 32);
   background(255);
 }
 
@@ -79,7 +81,7 @@ public void robotCouncil() { // function draws a council of my robot in a porabo
 public boolean mouseOverRect(int rectX, int rectY, int rectWidth, int rectHeight) {
   if (mouseX >= rectX && mouseX <= rectX + rectWidth && mouseY >= rectY && mouseY <= rectY + rectHeight) {
     return true;
-  }else{
+  } else {
     return false;
   }
 }
@@ -87,6 +89,7 @@ public boolean mouseOverRect(int rectX, int rectY, int rectWidth, int rectHeight
 public void buttons() { //draws the next and prev buttons and listens for the mouse hovering over them
   fill(255);
   stroke(5);
+  textFont(quicksand);
   rect(prevX, prevY, prevWidth, prevHeight); // previous scene button
   rect(nextX, nextY, nextWidth, nextHeight); // next scene button
   // add text to the rectangles creating the impression of a button

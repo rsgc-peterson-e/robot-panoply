@@ -11,7 +11,8 @@ int prevY = 300;
 int prevWidth = 60;
 int prevHeight = 30;
 float distance = 0.5;
-PFont cursive;
+PFont cursive; // will be used for special titles to add more the scene
+PFont quicksand; //will be used as default font
 EPRobot ethanBot = new EPRobot();
 TMRobots timBot = new TMRobots();
 KCRobot kernBot = new KCRobot();
@@ -21,6 +22,7 @@ OBRobot owenBot = new OBRobot();
 void setup() { //runs once
   size(1000, 700);
   cursive = createFont("cursive.ttf", 32); //create the font using the font file in the sketch folder
+  quicksand = createFont("quicksand.otf", 32);
   background(255);
 }
 
@@ -63,7 +65,7 @@ void robotCouncil() { // function draws a council of my robot in a porabola type
 boolean mouseOverRect(int rectX, int rectY, int rectWidth, int rectHeight) {
   if (mouseX >= rectX && mouseX <= rectX + rectWidth && mouseY >= rectY && mouseY <= rectY + rectHeight) {
     return true;
-  }else{
+  } else {
     return false;
   }
 }
@@ -71,6 +73,7 @@ boolean mouseOverRect(int rectX, int rectY, int rectWidth, int rectHeight) {
 void buttons() { //draws the next and prev buttons and listens for the mouse hovering over them
   fill(255);
   stroke(5);
+  textFont(quicksand);
   rect(prevX, prevY, prevWidth, prevHeight); // previous scene button
   rect(nextX, nextY, nextWidth, nextHeight); // next scene button
   // add text to the rectangles creating the impression of a button
@@ -99,7 +102,7 @@ void scene1() {
     timBot.drawAt(230, 400, 1, 1); // Juliet
     owenBot.drawAt(-70, 400, 0.7, 0.7); // Father Capulet
     kernBot.drawAt(-75, 420, 0.7, 0.7); // Mother Capulet
-    //draw text with cursive font
+    // draw text with cursive font
     textFont(cursive);
     fill(0); // set text to black
     text("The Capulets", 100, 350);
