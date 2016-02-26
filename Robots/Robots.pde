@@ -3,11 +3,11 @@ int yOff = 550; //used in second for loop to to take care of incrimenting y vari
 int yOff2 = 50; // second y variable for other loop
 int scene = 0; //variable that will store what slide the user is on for the storytelling of Romeo and Juliet
 int nextX = 920;
-int nextY = 300;
+int nextY = 100;
 int nextWidth = 60;
 int nextHeight = 30;
 int prevX = 20;
-int prevY = 300;
+int prevY = 100;
 int prevWidth = 60;
 int prevHeight = 30;
 int mainX = 15;
@@ -21,6 +21,7 @@ EPRobot ethanBot = new EPRobot();
 TMRobots timBot = new TMRobots();
 KCRobot kernBot = new KCRobot();
 OBRobot owenBot = new OBRobot();
+BDRobot benBot = new BDRobot();
 EPRobot2 ethanBot2 = new EPRobot2();
 
 
@@ -115,14 +116,14 @@ void buttons() { //draws the next and prev buttons and listens for the mouse hov
 
 void scene1() {
   if (scene == 1) { // makes sure it is the first scene before drawing the scene so the wrong function is not used
-    timBot.drawAt(230, 400, 1, 1); // Juliet
+    timBot.drawAt(230, 450, 1, 1); // Juliet
     owenBot.drawAt(-70, 400, 0.7, 0.7); // Father Capulet
     kernBot.drawAt(-75, 420, 0.7, 0.7); // Mother Capulet
     // draw text with cursive font
     textFont(cursive);
     fill(0); // set text to black
-    text("The Capulets", 100, 350);
-    text("Juliet", 300, 375);
+    text("The Capulets", 100, 300);
+    text("Juliet", 292, 425);
     stroke(5);
     //draw montague family
     ethanBot2.drawAt2(350, 200, 0.7, 0.7); //draw Romeo
