@@ -40,6 +40,8 @@ void draw() {
   robotCouncil();
   //draw first scene as long as user has navigated to it
   scene1();
+  //draw text box to display story
+  textBox("FUN", )
 } // end of draw which loops all the functions below
 
 void mouseClicked() { //runs every time mouse is clicked (pressed and released)
@@ -129,5 +131,16 @@ void scene1() {
     ethanBot2.drawAt2(350, 200, 0.7, 0.7); // Romeo
     ethanBot.drawAt(725, 350, 0.6, 0.6); // Father Montague
     benBot.drawAt(680, 375, 0.5, 0.5); // Mother Montague
+    fill(0);
+    text("The Montagues", 725, 300);
+    text("Romeo", 660, 400);
   }
 } // end of scene 1 function
+            // text displayed | x-pos | y-pos | color of the text box | color of text
+void textBox(String text, int textX, int textY, color boxColor, color textColor) { // function to draw text box for storytelling
+  text(text, textX + 5, textY + 20);
+  rectMode(CENTER);
+  rect(textX, textY, width/2, 200);
+  rectMode(CORNER);
+
+}
