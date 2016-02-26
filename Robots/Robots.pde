@@ -125,6 +125,6 @@ void scene1() {
     text("Juliet", 300, 375);
     stroke(5);
     //draw montague family
-
+    ethanBot2.drawAt2(350, 200, 0.7, 0.7); //draw Romeo
   }
 }
