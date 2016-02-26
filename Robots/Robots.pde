@@ -10,6 +10,10 @@ int prevX = 20;
 int prevY = 300;
 int prevWidth = 60;
 int prevHeight = 30;
+int mainX = 15;
+int mainY = 15;
+int mainWidth = 120;
+int mainHeight = 30;
 float distance = 0.5;
 PFont cursive; // will be used for special titles to add more the scene
 PFont quicksand; //will be used as default font
@@ -44,6 +48,9 @@ void mouseClicked() { //runs every time mouse is clicked (pressed and released)
   if (mouseOverRect(prevX, prevY, prevWidth, prevHeight) && scene > 0) {
     scene--;
   }
+  if (mouseOverRect(mainX, mainY, mainWidth, mainHeight)) {
+    scene = 0;
+  }
 }
 
 void robotCouncil() { // function draws a council of my robot in a porabola type from
@@ -77,17 +84,19 @@ void buttons() { //draws the next and prev buttons and listens for the mouse hov
   textFont(quicksand);
   rect(prevX, prevY, prevWidth, prevHeight); // previous scene button
   rect(nextX, nextY, nextWidth, nextHeight); // next scene button
+  rect(mainX, mainY, mainWidth, mainHeight); // main slide button (takes user back to robot council)
   // add text to the rectangles creating the impression of a button
   textSize(20);
   fill(0);
   //add text to the buttons
   text("Next", nextX + 5, nextY + 20);
   text("Prev", prevX + 5, prevY + 20);
+  text("Front Page", mainX + 5, mainY + 20);
   if (mouseOverRect(nextX, nextY, nextWidth, nextHeight)) { //check if mouse is over next button
     fill(209);
     rect(nextX, nextY, nextWidth, nextHeight); //draw new grey rect to make it seem as though the button turns grey when the mouse hovers over
     fill(0); //change text color to black
-    //redraw text so it is not overlapped by new rect
+    //redraw text so it is not overlapped by new rect (the same process is replicated for the next few buttons)
     text("Next", nextX + 5, nextY + 20);
   }
   if (mouseOverRect(prevX, prevY, prevWidth, prevHeight)) { //check if mouse is over prev button
@@ -96,10 +105,16 @@ void buttons() { //draws the next and prev buttons and listens for the mouse hov
     fill(0);
     text("Prev", prevX + 5, prevY + 20);
   }
+  if (mouseOverRect(mainX, mainY, mainWidth, mainHeight)) {
+    fill(209);
+    rect(mainX, mainY, mainWidth, mainHeight);
+    fill(0);
+    text("Front Page", mainX + 5, mainY + 20);
+  }
 }
 
 void scene1() {
-  if (scene == 1) {
+  if (scene == 1) { // makes sure it is the first scene before drawing the scene so the wrong function is not used
     timBot.drawAt(230, 400, 1, 1); // Juliet
     owenBot.drawAt(-70, 400, 0.7, 0.7); // Father Capulet
     kernBot.drawAt(-75, 420, 0.7, 0.7); // Mother Capulet
