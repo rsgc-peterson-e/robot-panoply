@@ -30,7 +30,7 @@ void setup() { //runs once
   cursive = createFont("cursive.ttf", 32); //create the font using the font file in the sketch folder
   quicksand = createFont("quicksand.otf", 32);
   background(255);
-}
+} // end of setup preparing the program to run correctly
 
 void draw() {
   background(255); //clear background
@@ -40,7 +40,7 @@ void draw() {
   robotCouncil();
   //draw first scene as long as user has navigated to it
   scene1();
-}
+} // end of draw which loops all the functions below
 
 void mouseClicked() { //runs every time mouse is clicked (pressed and released)
   if (mouseOverRect(nextX, nextY, nextWidth, nextHeight)) { //checks if mouse has been clicked while over the next button
@@ -71,10 +71,10 @@ void robotCouncil() { // function draws a council of my robot in a porabola type
   }
 }
 
-boolean mouseOverRect(int rectX, int rectY, int rectWidth, int rectHeight) {
-  if (mouseX >= rectX && mouseX <= rectX + rectWidth && mouseY >= rectY && mouseY <= rectY + rectHeight) {
+boolean mouseOverRect(int rectX, int rectY, int rectWidth, int rectHeight) { // boolean function returning true when the mouse is hovering over rectangle specified
+  if (mouseX >= rectX && mouseX <= rectX + rectWidth && mouseY >= rectY && mouseY <= rectY + rectHeight) { // checks if the points mouseX and mouseY are within the rectangle and returns true
     return true;
-  } else {
+  } else { // if the conditional above is not true than return false
     return false;
   }
 }
@@ -112,7 +112,7 @@ void buttons() { //draws the next and prev buttons and listens for the mouse hov
     fill(0);
     text("Front Page", mainX + 5, mainY + 20);
   }
-}
+} // end of buttons function
 
 void scene1() {
   if (scene == 1) { // makes sure it is the first scene before drawing the scene so the wrong function is not used
@@ -126,6 +126,8 @@ void scene1() {
     text("Juliet", 292, 425);
     stroke(5);
     //draw montague family
-    ethanBot2.drawAt2(350, 200, 0.7, 0.7); //draw Romeo
+    ethanBot2.drawAt2(350, 200, 0.7, 0.7); // Romeo
+    ethanBot.drawAt(725, 350, 0.6, 0.6); // Father Montague
+    benBot.drawAt(680, 375, 0.5, 0.5); // Mother Montague
   }
-}
+} // end of scene 1 function

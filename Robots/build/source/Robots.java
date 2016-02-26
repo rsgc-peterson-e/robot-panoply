@@ -19,13 +19,17 @@ int yOff = 550; //used in second for loop to to take care of incrimenting y vari
 int yOff2 = 50; // second y variable for other loop
 int scene = 0; //variable that will store what slide the user is on for the storytelling of Romeo and Juliet
 int nextX = 920;
-int nextY = 300;
+int nextY = 100;
 int nextWidth = 60;
 int nextHeight = 30;
 int prevX = 20;
-int prevY = 300;
+int prevY = 100;
 int prevWidth = 60;
 int prevHeight = 30;
+int mainX = 15;
+int mainY = 15;
+int mainWidth = 120;
+int mainHeight = 30;
 float distance = 0.5f;
 PFont cursive; // will be used for special titles to add more the scene
 PFont quicksand; //will be used as default font
@@ -33,6 +37,8 @@ EPRobot ethanBot = new EPRobot();
 TMRobots timBot = new TMRobots();
 KCRobot kernBot = new KCRobot();
 OBRobot owenBot = new OBRobot();
+BDRobot benBot = new BDRobot();
+EPRobot2 ethanBot2 = new EPRobot2();
 
 
 public void setup() { //runs once
@@ -40,7 +46,7 @@ public void setup() { //runs once
   cursive = createFont("cursive.ttf", 32); //create the font using the font file in the sketch folder
   quicksand = createFont("quicksand.otf", 32);
   background(255);
-}
+} // end of setup preparing the program to run correctly
 
 public void draw() {
   background(255); //clear background
@@ -50,7 +56,7 @@ public void draw() {
   robotCouncil();
   //draw first scene as long as user has navigated to it
   scene1();
-}
+} // end of draw which loops all the functions below
 
 public void mouseClicked() { //runs every time mouse is clicked (pressed and released)
   if (mouseOverRect(nextX, nextY, nextWidth, nextHeight)) { //checks if mouse has been clicked while over the next button
@@ -58,6 +64,9 @@ public void mouseClicked() { //runs every time mouse is clicked (pressed and rel
   }
   if (mouseOverRect(prevX, prevY, prevWidth, prevHeight) && scene > 0) {
     scene--;
+  }
+  if (mouseOverRect(mainX, mainY, mainWidth, mainHeight)) {
+    scene = 0;
   }
 }
 
@@ -78,10 +87,10 @@ public void robotCouncil() { // function draws a council of my robot in a porabo
   }
 }
 
-public boolean mouseOverRect(int rectX, int rectY, int rectWidth, int rectHeight) {
-  if (mouseX >= rectX && mouseX <= rectX + rectWidth && mouseY >= rectY && mouseY <= rectY + rectHeight) {
+public boolean mouseOverRect(int rectX, int rectY, int rectWidth, int rectHeight) { // boolean function returning true when the mouse is hovering over rectangle specified
+  if (mouseX >= rectX && mouseX <= rectX + rectWidth && mouseY >= rectY && mouseY <= rectY + rectHeight) { // checks if the points mouseX and mouseY are within the rectangle and returns true
     return true;
-  } else {
+  } else { // if the conditional above is not true than return false
     return false;
   }
 }
@@ -92,17 +101,19 @@ public void buttons() { //draws the next and prev buttons and listens for the mo
   textFont(quicksand);
   rect(prevX, prevY, prevWidth, prevHeight); // previous scene button
   rect(nextX, nextY, nextWidth, nextHeight); // next scene button
+  rect(mainX, mainY, mainWidth, mainHeight); // main slide button (takes user back to robot council)
   // add text to the rectangles creating the impression of a button
   textSize(20);
   fill(0);
   //add text to the buttons
   text("Next", nextX + 5, nextY + 20);
   text("Prev", prevX + 5, prevY + 20);
+  text("Front Page", mainX + 5, mainY + 20);
   if (mouseOverRect(nextX, nextY, nextWidth, nextHeight)) { //check if mouse is over next button
     fill(209);
     rect(nextX, nextY, nextWidth, nextHeight); //draw new grey rect to make it seem as though the button turns grey when the mouse hovers over
     fill(0); //change text color to black
-    //redraw text so it is not overlapped by new rect
+    //redraw text so it is not overlapped by new rect (the same process is replicated for the next few buttons)
     text("Next", nextX + 5, nextY + 20);
   }
   if (mouseOverRect(prevX, prevY, prevWidth, prevHeight)) { //check if mouse is over prev button
@@ -111,19 +122,31 @@ public void buttons() { //draws the next and prev buttons and listens for the mo
     fill(0);
     text("Prev", prevX + 5, prevY + 20);
   }
-}
+  if (mouseOverRect(mainX, mainY, mainWidth, mainHeight)) {
+    fill(209);
+    rect(mainX, mainY, mainWidth, mainHeight);
+    fill(0);
+    text("Front Page", mainX + 5, mainY + 20);
+  }
+} // end of buttons function
 
 public void scene1() {
-  if (scene == 1) {
-    timBot.drawAt(230, 400, 1, 1); // Juliet
+  if (scene == 1) { // makes sure it is the first scene before drawing the scene so the wrong function is not used
+    timBot.drawAt(230, 450, 1, 1); // Juliet
     owenBot.drawAt(-70, 400, 0.7f, 0.7f); // Father Capulet
     kernBot.drawAt(-75, 420, 0.7f, 0.7f); // Mother Capulet
-    //draw text with cursive font
+    // draw text with cursive font
     textFont(cursive);
     fill(0); // set text to black
-    text("The Capulets", 100, 350);
+    text("The Capulets", 100, 300);
+    text("Juliet", 292, 425);
+    stroke(5);
+    //draw montague family
+    ethanBot2.drawAt2(350, 200, 0.7f, 0.7f); // Romeo
+    ethanBot.drawAt(725, 350, 0.6f, 0.6f); // Father Montague
+    benBot.drawAt(680, 375, 0.5f, 0.5f);
   }
-}
+} // end of scene 1 function
 class ASPRobot { 
   public void ASPRobot() {
   }
@@ -185,7 +208,7 @@ class ASPRobot {
     line((x+250)*horizontalScale, (y+325)*verticalScale, (x+350)*horizontalScale, (y+472)*verticalScale); //connecting line
   }
 }
-class BDRobot { 
+class BDRobot {
 
   public void BDRobot() {
   }
@@ -231,6 +254,7 @@ class BDRobot {
     noStroke();
     fill(130);
     ellipse(xAnchor + 345.5f * horizontalScale, yAnchor + 440 * verticalScale, 20 * horizontalScale, 20 * verticalScale);
+    strokeWeight(1);
   }
 }
 class DDRobot {

@@ -1,4 +1,4 @@
-class BDRobot { 
+class BDRobot {
 
   void BDRobot() {
   }
@@ -44,5 +44,6 @@ class BDRobot {
     noStroke();
     fill(130);
     ellipse(xAnchor + 345.5 * horizontalScale, yAnchor + 440 * verticalScale, 20 * horizontalScale, 20 * verticalScale);
+    strokeWeight(1);
   }
 }
