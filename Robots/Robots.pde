@@ -17,6 +17,7 @@ EPRobot ethanBot = new EPRobot();
 TMRobots timBot = new TMRobots();
 KCRobot kernBot = new KCRobot();
 OBRobot owenBot = new OBRobot();
+EPRobot2 ethanBot2 = new EPRobot2();
 
 
 void setup() { //runs once
@@ -107,6 +108,8 @@ void scene1() {
     fill(0); // set text to black
     text("The Capulets", 100, 350);
     text("Juliet", 300, 375);
-    // begin drawing out the Montague Family
+    stroke(5);
+    //draw montague family
+
   }
 }
