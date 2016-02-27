@@ -50,6 +50,8 @@ void setup() { //runs once
   bg2 = loadImage("ballroom.jpg");
   bg2.resize(1000, 700);
   bg3 = loadImage("cemetery.jpg");
+  bg4 = loadImage("shakespeare.jpg");
+  bg4.resize(1000, 900);
   hearts.resize(150, 125); // resize the image to allow it to fit the canvas properly
   bg1 = loadImage("verona.jpg");
   background(255);
@@ -67,6 +69,8 @@ void draw() {
   scene2();
   // draw third scene
   scene3();
+  // draw fourth scene
+  scene4();
 } // end of draw which loops all the functions below
 
 void mouseClicked() { //runs every time mouse is clicked (pressed and released)
@@ -226,6 +230,12 @@ void scene3() {
 
 void scene4() {
   if (scene == 4) {
-
+    image(bg4, 0, -50);
+    buttons();
+    textFont(cursive);
+    fill(white);
+    textSize(64);
+    text("The End", width/2 - textWidth("The End")/2 - 20, 115);
+    textFont(quicksand);
   }
-}
+} // end of scene 4 function
