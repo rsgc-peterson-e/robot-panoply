@@ -119,34 +119,6 @@ void buttons() { //draws the next and prev buttons and listens for the mouse hov
   }
 } // end of buttons function
 
-void scene1() {
-  if (scene == 1) { // makes sure it is the first scene before drawing the scene so the wrong function is not used
-    //draw background
-    image(bg1, 0, 0);
-    buttons();
-    timBot.drawAt(230, 450, 1, 1); // Juliet
-    owenBot.drawAt(-70, 400, 0.7, 0.7); // Father Capulet
-    kernBot.drawAt(-75, 420, 0.7, 0.7); // Mother Capulet
-    // draw text with cursive font
-    textFont(cursive);
-    fill(white); // set text to black
-    text("The Capulets", 100, 300);
-    text("Juliet", 292, 425);
-    stroke(5);
-    //draw montague family
-    ethanBot2.drawAt2(350, 200, 0.7, 0.7); // Romeo
-    ethanBot.drawAt(725, 360, 0.6, 0.6); // Father Montague
-    benBot.drawAt(680, 375, 0.5, 0.5); // Mother Montague
-    fill(white);
-    text("The Montagues", 725, 300);
-    text("Romeo", 660, 400);
-    // draw text box to complete the first scene
-    textBox("Two households, both alike in dignity, In fair Verona, where we lay our scene...", width/2, 150); //text will not be drawn because string is too long
-    text("Two households, both alike in", width/2 - width/4 + 5, 125);
-    text("dignity, In fair Verona, where", width/2 - width/4 + 5, 150);
-    text("we lay our scene...", width/2 - width/4 + 5, 175);
-  }
-} // end of scene 1 function
 //             text displayed | x-pos | y-pos
 void textBox(String text, int textX, int textY) { // function to draw text box for storytelling
   stroke(5);
@@ -164,3 +136,36 @@ void textBox(String text, int textX, int textY) { // function to draw text box f
     text(text, textX - textX/2 + 5, textY - 25);
   }
 } // end of text box function
+
+void scene1() {
+  if (scene == 1) { // makes sure it is the first scene before drawing the scene so the wrong function is not used
+    //draw background
+    image(bg1, 0, 0);
+    buttons();
+    timBot.drawAt(230, 450, 1, 1); // Juliet
+    owenBot.drawAt(-70, 400, 0.7, 0.7); // Father Capulet
+    kernBot.drawAt(-75, 420, 0.7, 0.7); // Mother Capulet
+    // draw text with cursive font
+    textFont(cursive);
+    fill(white); // set text to black
+    text("The Capulets", 100, 300);
+    text("Juliet", 292, 425);
+    stroke(5);
+    //draw montague family
+    ethanBot2.drawAt2(350, 200, 0.7, 0.7); // Romeo
+    ethanBot.drawAt(725, 358, 0.6, 0.6); // Father Montague
+    benBot.drawAt(680, 375, 0.5, 0.5); // Mother Montague
+    fill(white);
+    text("The Montagues", 725, 300);
+    text("Romeo", 660, 400);
+    // draw text box to complete the first scene
+    textBox("Two households, both alike in dignity, In fair Verona, where we lay our scene...", width/2, 150); //text will not be drawn because string is too long
+    text("Two households, both alike in", width/2 - width/4 + 5, 125);
+    text("dignity, In fair Verona, where", width/2 - width/4 + 5, 150);
+    text("we lay our scene...", width/2 - width/4 + 5, 175);
+  }
+} // end of scene 1 function
+
+void scene2() {
+  
+}
