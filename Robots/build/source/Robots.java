@@ -36,7 +36,9 @@ int white = color(255, 255, 255);
 float distance = 0.5f;
 PFont cursive; // will be used for special titles to add more the scene
 PFont quicksand; //will be used as default font
+PImage hearts; // image used to demonstrate Romeo and Juliet falling in love
 PImage bg1; // background for first scene
+PImage bg2; // background for second scene
 EPRobot ethanBot = new EPRobot();
 TMRobots timBot = new TMRobots();
 KCRobot kernBot = new KCRobot();
@@ -49,6 +51,10 @@ public void setup() { //runs once
   
   cursive = createFont("cursive.ttf", 32); //create the font using the font file in the sketch folder
   quicksand = createFont("quicksand.otf", 32);
+  hearts = loadImage("hearts.png");
+  bg2 = loadImage("ballroom.jpg");
+  bg2.resize(1000, 700);
+  hearts.resize(150, 125); // resize the image to allow it to fit the canvas properly
   bg1 = loadImage("verona.jpg");
   background(255);
 } // end of setup preparing the program to run correctly
@@ -61,6 +67,8 @@ public void draw() {
   robotCouncil();
   //draw first scene as long as user has navigated to it
   scene1();
+  // draw second scene as long as user has navigated to it
+  scene2();
 } // end of draw which loops all the functions below
 
 public void mouseClicked() { //runs every time mouse is clicked (pressed and released)
@@ -135,34 +143,6 @@ public void buttons() { //draws the next and prev buttons and listens for the mo
   }
 } // end of buttons function
 
-public void scene1() {
-  if (scene == 1) { // makes sure it is the first scene before drawing the scene so the wrong function is not used
-    //draw background
-    image(bg1, 0, 0);
-    buttons();
-    timBot.drawAt(230, 450, 1, 1); // Juliet
-    owenBot.drawAt(-70, 400, 0.7f, 0.7f); // Father Capulet
-    kernBot.drawAt(-75, 420, 0.7f, 0.7f); // Mother Capulet
-    // draw text with cursive font
-    textFont(cursive);
-    fill(white); // set text to black
-    text("The Capulets", 100, 300);
-    text("Juliet", 292, 425);
-    stroke(5);
-    //draw montague family
-    ethanBot2.drawAt2(350, 200, 0.7f, 0.7f); // Romeo
-    ethanBot.drawAt(725, 360, 0.6f, 0.6f); // Father Montague
-    benBot.drawAt(680, 375, 0.5f, 0.5f); // Mother Montague
-    fill(white);
-    text("The Montagues", 725, 300);
-    text("Romeo", 660, 400);
-    // draw text box to complete the first scene
-    textBox("Two households, both alike in dignity, In fair Verona, where we lay our scene...", width/2, 150); //text will not be drawn because string is too long
-    text("Two households, both alike in", width/2 - width/4 + 5, 125);
-    text("dignity, In fair Verona, where", width/2 - width/4 + 5, 150);
-    text("we lay our scene...", width/2 - width/4 + 5, 175);
-  }
-} // end of scene 1 function
 //             text displayed | x-pos | y-pos
 public void textBox(String text, int textX, int textY) { // function to draw text box for storytelling
   stroke(5);
@@ -180,6 +160,48 @@ public void textBox(String text, int textX, int textY) { // function to draw tex
     text(text, textX - textX/2 + 5, textY - 25);
   }
 } // end of text box function
+
+public void scene1() {
+  if (scene == 1) { // makes sure it is the first scene before drawing the scene so the wrong function is not used
+    //draw background
+    image(bg1, 0, 0);
+    buttons();
+    timBot.drawAt(230, 450, 1, 1); // Juliet
+    owenBot.drawAt(-70, 400, 0.7f, 0.7f); // Father Capulet
+    kernBot.drawAt(-75, 420, 0.7f, 0.7f); // Mother Capulet
+    // draw text with cursive font
+    textFont(cursive);
+    fill(white); // set text to black
+    text("The Capulets", 100, 300);
+    text("Juliet", 292, 425);
+    stroke(5);
+    //draw montague family
+    ethanBot2.drawAt2(350, 200, 0.7f, 0.7f); // Romeo
+    ethanBot.drawAt(725, 358, 0.6f, 0.6f); // Father Montague
+    benBot.drawAt(680, 375, 0.5f, 0.5f); // Mother Montague
+    fill(white);
+    text("The Montagues", 725, 300);
+    text("Romeo", 660, 400);
+    // draw text box to complete the first scene
+    textBox("Two households, both alike in dignity, In fair Verona, where we lay our scene...", width/2, 150); //text will not be drawn because string is too long
+    text("Two households, both alike in", width/2 - width/4 + 5, 125);
+    text("dignity, In fair Verona, where", width/2 - width/4 + 5, 150);
+    text("we lay our scene...", width/2 - width/4 + 5, 175);
+  }
+} // end of scene 1 function
+
+public void scene2() {
+  if (scene == 2) {
+    image(bg2,0,0);
+    image(hearts, 425, 300);
+    ethanBot2.drawAt2(140, 0, 1, 1);
+    timBot.drawAt(150, 325, 1.5f, 1.5f);
+    textBox("Romeo and Juliet meet at a Capulet party and fall in love", width/2, 150); // text will also not be shown because the string is too long
+    text("Romeo and Juliet meet at a", width/2 - width/4 + 5, 125);
+    text("Capulet party and fall in love...", width/2 - width/4 + 5, 150);
+    buttons();
+  }
+}
 class ASPRobot { 
   public void ASPRobot() {
   }

@@ -20,7 +20,9 @@ color white = color(255, 255, 255);
 float distance = 0.5;
 PFont cursive; // will be used for special titles to add more the scene
 PFont quicksand; //will be used as default font
+PImage hearts; // image used to demonstrate Romeo and Juliet falling in love
 PImage bg1; // background for first scene
+PImage bg2; // background for second scene
 EPRobot ethanBot = new EPRobot();
 TMRobots timBot = new TMRobots();
 KCRobot kernBot = new KCRobot();
@@ -33,6 +35,10 @@ void setup() { //runs once
   size(1000, 700);
   cursive = createFont("cursive.ttf", 32); //create the font using the font file in the sketch folder
   quicksand = createFont("quicksand.otf", 32);
+  hearts = loadImage("hearts.png");
+  bg2 = loadImage("ballroom.jpg");
+  bg2.resize(1000, 700);
+  hearts.resize(150, 125); // resize the image to allow it to fit the canvas properly
   bg1 = loadImage("verona.jpg");
   background(255);
 } // end of setup preparing the program to run correctly
@@ -45,6 +51,8 @@ void draw() {
   robotCouncil();
   //draw first scene as long as user has navigated to it
   scene1();
+  // draw second scene as long as user has navigated to it
+  scene2();
 } // end of draw which loops all the functions below
 
 void mouseClicked() { //runs every time mouse is clicked (pressed and released)
@@ -167,5 +175,14 @@ void scene1() {
 } // end of scene 1 function
 
 void scene2() {
-  
+  if (scene == 2) {
+    image(bg2,0,0);
+    image(hearts, 425, 300);
+    ethanBot2.drawAt2(140, 0, 1, 1);
+    timBot.drawAt(150, 325, 1.5, 1.5);
+    textBox("Romeo and Juliet meet at a Capulet party and fall in love", width/2, 150); // text will also not be shown because the string is too long
+    text("Romeo and Juliet meet at a", width/2 - width/4 + 5, 125);
+    text("Capulet party and fall in love...", width/2 - width/4 + 5, 150);
+    buttons();
+  }
 }
