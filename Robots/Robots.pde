@@ -186,3 +186,9 @@ void scene2() {
     buttons();
   }
 }
+
+void scene3() {
+  if (scene == 3) {
+    
+  }
+}
