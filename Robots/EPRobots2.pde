@@ -1,5 +1,5 @@
 class EPRobot2 {
-void EPRobot2() {/*Nothing to construct*/}
+void EPRobot2() {/*Nothing to Construct*/}
 
 void drawAt2(int cx, int cy, float cHorizontal, float cVertical) { //function drawing circlular bot
   //draw head

@@ -21,8 +21,13 @@ float distance = 0.5;
 PFont cursive; // will be used for special titles to add more the scene
 PFont quicksand; //will be used as default font
 PImage hearts; // image used to demonstrate Romeo and Juliet falling in love
-PImage bg1; // background for first scene
-PImage bg2; // background for second scene
+PImage brokenHeart;
+PImage poison;
+PImage dagger;
+PImage bg1; // background for first scene etc.
+PImage bg2;
+PImage bg3;
+PImage bg4;
 EPRobot ethanBot = new EPRobot();
 TMRobots timBot = new TMRobots();
 KCRobot kernBot = new KCRobot();
@@ -36,8 +41,15 @@ void setup() { //runs once
   cursive = createFont("cursive.ttf", 32); //create the font using the font file in the sketch folder
   quicksand = createFont("quicksand.otf", 32);
   hearts = loadImage("hearts.png");
+  brokenHeart = loadImage("heart_broken.png");
+  brokenHeart.resize(128, 128);
+  poison = loadImage("poison.png");
+  poison.resize(65, 116);
+  dagger = loadImage("dagger.png");
+  dagger.resize(42, 145);
   bg2 = loadImage("ballroom.jpg");
   bg2.resize(1000, 700);
+  bg3 = loadImage("cemetery.jpg");
   hearts.resize(150, 125); // resize the image to allow it to fit the canvas properly
   bg1 = loadImage("verona.jpg");
   background(255);
@@ -53,6 +65,8 @@ void draw() {
   scene1();
   // draw second scene as long as user has navigated to it
   scene2();
+  // draw third scene
+  scene3();
 } // end of draw which loops all the functions below
 
 void mouseClicked() { //runs every time mouse is clicked (pressed and released)
@@ -180,15 +194,38 @@ void scene2() {
     image(hearts, 425, 300);
     ethanBot2.drawAt2(140, 0, 1, 1);
     timBot.drawAt(150, 325, 1.5, 1.5);
-    textBox("Romeo and Juliet meet at a Capulet party and fall in love", width/2, 150); // text will also not be shown because the string is too long
+    textBox("Romeo and Juliet meet at a Capulet party and fall in love...", width/2, 150); // text will also not be shown because the string is too long
     text("Romeo and Juliet meet at a", width/2 - width/4 + 5, 125);
     text("Capulet party and fall in love...", width/2 - width/4 + 5, 150);
     buttons();
   }
-}
+} // end of scene 2 function
 
 void scene3() {
   if (scene == 3) {
-    
+    image(bg3, 0,0);
+    buttons();
+    ethanBot2.drawAt2(140, 0, 1, 1);
+    timBot.drawAt(150, 325, 1.5, 1.5);
+    image(brokenHeart, 500 - 64, 300);
+    image(poison, 680, 410);
+    image(dagger, 150, 515);
+    textBox("Romeo takes his life believing Juliet is dead, when Juliet awakes she realizes Romeo is dead and takes her own life as well", width/2, 150);
+    fill(highLight);
+    rectMode(CENTER);
+    rect(width/2, 150, width/2, height/4);
+    rectMode(CORNER);
+    fill(white);
+    text("Romeo takes his life believing", width/2 - width/4 + 5, 100);
+    text("Juliet is dead, when Juliet", width/2 - width/4 + 5, 125);
+    text("awakes she realizes Romeo is", width/2 - width/4 + 5, 150);
+    text("dead and takes her own life", width/2 - width/4 + 5, 175);
+    text("as well using Romeo's dagger.", width/2 - width/4 + 5, 200);
+  }
+} // end of scene 3 function
+
+void scene4() {
+  if (scene == 4) {
+
   }
 }
