@@ -75,12 +75,20 @@ void draw() {
 
 void mouseClicked() { //runs every time mouse is clicked (pressed and released)
   if (mouseOverRect(nextX, nextY, nextWidth, nextHeight)) { //checks if mouse has been clicked while over the next button
-    scene++;
+    if (scene == 4) {
+      scene = 0;
+    } else {
+      scene++;
+    }
   }
-  if (mouseOverRect(prevX, prevY, prevWidth, prevHeight) && scene > 0) {
-    scene--;
+  if (mouseOverRect(prevX, prevY, prevWidth, prevHeight)) { //checks if the mouse has been clicked over the prev
+    if (scene == 0) {
+      scene = 4;
+    } else {
+      scene--;
+    }
   }
-  if (mouseOverRect(mainX, mainY, mainWidth, mainHeight)) {
+  if (mouseOverRect(mainX, mainY, mainWidth, mainHeight)) { // checks if mouse was clicked over front page button
     scene = 0;
   }
 }
