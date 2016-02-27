@@ -26,13 +26,17 @@ int prevX = 20;
 int prevY = 100;
 int prevWidth = 60;
 int prevHeight = 30;
-int mainX = 15;
+int mainX = 440;
 int mainY = 15;
 int mainWidth = 120;
 int mainHeight = 30;
+int highLight = color(209, 209, 209);
+int black = color(0, 0, 0);
+int white = color(255, 255, 255);
 float distance = 0.5f;
 PFont cursive; // will be used for special titles to add more the scene
 PFont quicksand; //will be used as default font
+PImage bg1; // background for first scene
 EPRobot ethanBot = new EPRobot();
 TMRobots timBot = new TMRobots();
 KCRobot kernBot = new KCRobot();
@@ -45,6 +49,7 @@ public void setup() { //runs once
   
   cursive = createFont("cursive.ttf", 32); //create the font using the font file in the sketch folder
   quicksand = createFont("quicksand.otf", 32);
+  bg1 = loadImage("verona.jpg");
   background(255);
 } // end of setup preparing the program to run correctly
 
@@ -101,10 +106,10 @@ public void buttons() { //draws the next and prev buttons and listens for the mo
   textFont(quicksand);
   rect(prevX, prevY, prevWidth, prevHeight); // previous scene button
   rect(nextX, nextY, nextWidth, nextHeight); // next scene button
-  rect(mainX, mainY, mainWidth, mainHeight); // main slide button (takes user back to robot council)
+  rect(mainX, mainY, mainWidth, mainHeight); // main slide button (takes user back to robot council) centered horizontally on the canvas
   // add text to the rectangles creating the impression of a button
   textSize(20);
-  fill(0);
+  fill(black);
   //add text to the buttons
   text("Next", nextX + 5, nextY + 20);
   text("Prev", prevX + 5, prevY + 20);
@@ -123,30 +128,58 @@ public void buttons() { //draws the next and prev buttons and listens for the mo
     text("Prev", prevX + 5, prevY + 20);
   }
   if (mouseOverRect(mainX, mainY, mainWidth, mainHeight)) {
-    fill(209);
+    fill(highLight);
     rect(mainX, mainY, mainWidth, mainHeight);
-    fill(0);
+    fill(black);
     text("Front Page", mainX + 5, mainY + 20);
   }
 } // end of buttons function
 
 public void scene1() {
   if (scene == 1) { // makes sure it is the first scene before drawing the scene so the wrong function is not used
+    //draw background
+    image(bg1, 0, 0);
+    buttons();
     timBot.drawAt(230, 450, 1, 1); // Juliet
     owenBot.drawAt(-70, 400, 0.7f, 0.7f); // Father Capulet
     kernBot.drawAt(-75, 420, 0.7f, 0.7f); // Mother Capulet
     // draw text with cursive font
     textFont(cursive);
-    fill(0); // set text to black
+    fill(white); // set text to black
     text("The Capulets", 100, 300);
     text("Juliet", 292, 425);
     stroke(5);
     //draw montague family
     ethanBot2.drawAt2(350, 200, 0.7f, 0.7f); // Romeo
-    ethanBot.drawAt(725, 350, 0.6f, 0.6f); // Father Montague
-    benBot.drawAt(680, 375, 0.5f, 0.5f);
+    ethanBot.drawAt(725, 360, 0.6f, 0.6f); // Father Montague
+    benBot.drawAt(680, 375, 0.5f, 0.5f); // Mother Montague
+    fill(white);
+    text("The Montagues", 725, 300);
+    text("Romeo", 660, 400);
+    // draw text box to complete the first scene
+    textBox("Two households, both alike in dignity, In fair Verona, where we lay our scene...", width/2, 150); //text will not be drawn because string is too long
+    text("Two households, both alike in", width/2 - width/4 + 5, 125);
+    text("dignity, In fair Verona, where", width/2 - width/4 + 5, 150);
+    text("we lay our scene...", width/2 - width/4 + 5, 175);
   }
 } // end of scene 1 function
+//             text displayed | x-pos | y-pos
+public void textBox(String text, int textX, int textY) { // function to draw text box for storytelling
+  stroke(5);
+  textFont(quicksand);
+  fill(highLight);
+  rectMode(CENTER);
+  rect(textX, textY, width/2, height/6);
+  rectMode(CORNER);
+  fill(255);
+  stroke(5);
+  if (textWidth(text) > width/2) {
+    // do not display any text if the width of the text is larger than the box
+    // the user will handle drawing the text manually (text scaling within the box may be implemented depending on the need)
+  } else { //only display the text if it fits in the rectangle
+    text(text, textX - textX/2 + 5, textY - 25);
+  }
+} // end of text box function
 class ASPRobot { 
   public void ASPRobot() {
   }
