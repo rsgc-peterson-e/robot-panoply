@@ -107,6 +107,11 @@ void robotCouncil() { // function draws a council of my robot in a porabola type
     }
     distance = 0.5; //reset variable values so the function can be looped infinitely
     yOff = 550;
+    fill(0);
+    textFont(cursive);
+    text("The Robot Council", width/2 - textWidth("The Robot Council")/2 - 10, 100);
+    textFont(quicksand);
+    text("A demonstration of using loops to draw multiple robots", width/2 - textWidth("A demonstration of using loops to draw multiple robots")/2, 160);
   }
 }
 
