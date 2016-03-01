@@ -51,8 +51,9 @@ OBRobot owenBot = new OBRobot();
 BDRobot benBot = new BDRobot();
 EPRobot2 ethanBot2 = new EPRobot2();
 
+// runs once
+public void setup() {
 
-public void setup() { //runs once
   
   cursive = createFont("cursive.ttf", 32); //create the font using the font file in the sketch folder
   quicksand = createFont("quicksand.otf", 32);
@@ -71,32 +72,50 @@ public void setup() { //runs once
   hearts.resize(150, 125); // resize the image to allow it to fit the canvas properly
   bg1 = loadImage("verona.jpg");
   background(255);
+
 } // end of setup preparing the program to run correctly
 
+// runs repeatedly
 public void draw() {
+
   background(255); //clear background
+
   //draw next and prev scene buttons
   buttons();
+
   //draw robot council
   robotCouncil();
+
   //draw first scene as long as user has navigated to it
   scene1();
+
   // draw second scene as long as user has navigated to it
   scene2();
+
   // draw third scene
   scene3();
+
   // draw fourth scene
   scene4();
+
 } // end of draw which loops all the functions below
 
 public void mouseClicked() { //runs every time mouse is clicked (pressed and released)
   if (mouseOverRect(nextX, nextY, nextWidth, nextHeight)) { //checks if mouse has been clicked while over the next button
-    scene++;
+    if (scene == 4) {
+      scene = 0;
+    } else {
+      scene++;
+    }
   }
-  if (mouseOverRect(prevX, prevY, prevWidth, prevHeight) && scene > 0) {
-    scene--;
+  if (mouseOverRect(prevX, prevY, prevWidth, prevHeight)) { //checks if the mouse has been clicked over the prev
+    if (scene == 0) {
+      scene = 4;
+    } else {
+      scene--;
+    }
   }
-  if (mouseOverRect(mainX, mainY, mainWidth, mainHeight)) {
+  if (mouseOverRect(mainX, mainY, mainWidth, mainHeight)) { // checks if mouse was clicked over front page button
     scene = 0;
   }
 }
@@ -115,6 +134,11 @@ public void robotCouncil() { // function draws a council of my robot in a porabo
     }
     distance = 0.5f; //reset variable values so the function can be looped infinitely
     yOff = 550;
+    fill(0);
+    textFont(cursive);
+    text("The Robot Council", width/2 - textWidth("The Robot Council")/2 - 10, 100);
+    textFont(quicksand);
+    text("A demonstration of using loops to draw multiple robots", width/2 - textWidth("A demonstration of using loops to draw multiple robots")/2, 160);
   }
 }
 

@@ -56,37 +56,37 @@ void setup() {
   hearts.resize(150, 125); // resize the image to allow it to fit the canvas properly
   bg1 = loadImage("verona.jpg");
   background(255);
-  
+
 } // end of setup preparing the program to run correctly
 
 // runs repeatedly
 void draw() {
 
   background(255); //clear background
-  
+
   //draw next and prev scene buttons
   buttons();
-  
+
   //draw robot council
   robotCouncil();
-  
+
   //draw first scene as long as user has navigated to it
   scene1();
-  
+
   // draw second scene as long as user has navigated to it
   scene2();
-  
+
   // draw third scene
   scene3();
-  
+
   // draw fourth scene
   scene4();
-  
+
 } // end of draw which loops all the functions below
 
 void mouseClicked() { //runs every time mouse is clicked (pressed and released)
   if (mouseOverRect(nextX, nextY, nextWidth, nextHeight)) { //checks if mouse has been clicked while over the next button
-    if (scene == 4) {
+    if (scene == 5) {
       scene = 0;
     } else {
       scene++;
@@ -94,7 +94,7 @@ void mouseClicked() { //runs every time mouse is clicked (pressed and released)
   }
   if (mouseOverRect(prevX, prevY, prevWidth, prevHeight)) { //checks if the mouse has been clicked over the prev
     if (scene == 0) {
-      scene = 4;
+      scene = 5;
     } else {
       scene--;
     }
@@ -177,7 +177,7 @@ void textBox(String text, int textX, int textY) { // function to draw text box f
   rectMode(CENTER);
   rect(textX, textY, width/2, height/6);
   rectMode(CORNER);
-  fill(255);
+  fill(white);
   stroke(5);
   if (textWidth(text) > width/2) {
     // do not display any text if the width of the text is larger than the box
@@ -187,8 +187,13 @@ void textBox(String text, int textX, int textY) { // function to draw text box f
   }
 } // end of text box function
 
+void title() { // new function to display the play title
+
+}
+
+
 void scene1() {
-  if (scene == 1) { // makes sure it is the first scene before drawing the scene so the wrong function is not used
+  if (scene == 2) { // makes sure it is the first scene before drawing the scene so the wrong function is not used
     //draw background
     image(bg1, 0, 0);
     buttons();
@@ -217,7 +222,7 @@ void scene1() {
 } // end of scene 1 function
 
 void scene2() {
-  if (scene == 2) {
+  if (scene == 3) {
     image(bg2,0,0);
     image(hearts, 425, 300);
     ethanBot2.drawAt2(140, 0, 1, 1);
@@ -230,7 +235,7 @@ void scene2() {
 } // end of scene 2 function
 
 void scene3() {
-  if (scene == 3) {
+  if (scene == 4) {
     image(bg3, 0,0);
     buttons();
     ethanBot2.drawAt2(140, 0, 1, 1);
@@ -253,7 +258,7 @@ void scene3() {
 } // end of scene 3 function
 
 void scene4() {
-  if (scene == 4) {
+  if (scene == 5) {
     image(bg4, 0, -50);
     buttons();
     textFont(cursive);
