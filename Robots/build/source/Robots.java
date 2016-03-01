@@ -40,6 +40,7 @@ PImage hearts; // image used to demonstrate Romeo and Juliet falling in love
 PImage brokenHeart;
 PImage poison;
 PImage dagger;
+PImage title; // background for title slide
 PImage bg1; // background for first scene etc.
 PImage bg2;
 PImage bg3;
@@ -64,6 +65,8 @@ public void setup() {
   poison.resize(65, 116);
   dagger = loadImage("dagger.png");
   dagger.resize(42, 145);
+  title = loadImage("title.jpg");
+  title.resize(1000, 700);
   bg2 = loadImage("ballroom.jpg");
   bg2.resize(1000, 700);
   bg3 = loadImage("cemetery.jpg");
@@ -82,6 +85,9 @@ public void draw() {
 
   //draw next and prev scene buttons
   buttons();
+
+  // draw title slide
+  title();
 
   //draw robot council
   robotCouncil();
@@ -102,7 +108,7 @@ public void draw() {
 
 public void mouseClicked() { //runs every time mouse is clicked (pressed and released)
   if (mouseOverRect(nextX, nextY, nextWidth, nextHeight)) { //checks if mouse has been clicked while over the next button
-    if (scene == 4) {
+    if (scene == 5) {
       scene = 0;
     } else {
       scene++;
@@ -110,7 +116,7 @@ public void mouseClicked() { //runs every time mouse is clicked (pressed and rel
   }
   if (mouseOverRect(prevX, prevY, prevWidth, prevHeight)) { //checks if the mouse has been clicked over the prev
     if (scene == 0) {
-      scene = 4;
+      scene = 5;
     } else {
       scene--;
     }
@@ -193,7 +199,7 @@ public void textBox(String text, int textX, int textY) { // function to draw tex
   rectMode(CENTER);
   rect(textX, textY, width/2, height/6);
   rectMode(CORNER);
-  fill(255);
+  fill(white);
   stroke(5);
   if (textWidth(text) > width/2) {
     // do not display any text if the width of the text is larger than the box
@@ -203,8 +209,20 @@ public void textBox(String text, int textX, int textY) { // function to draw tex
   }
 } // end of text box function
 
+public void title() { // new function to display the play title
+  if (scene == 1) {
+    image(title, 0, 0);
+    buttons();
+    fill(white);
+    textFont(cursive);
+    text("Romeo & Juliet", width/2 - textWidth("Romeo and Juliet")/2, height/2);
+    textFont(quicksand); // set font back to default ensuring other pieces of text do not inherit the cursive font
+  }
+}
+
+
 public void scene1() {
-  if (scene == 1) { // makes sure it is the first scene before drawing the scene so the wrong function is not used
+  if (scene == 2) { // makes sure it is the first scene before drawing the scene so the wrong function is not used
     //draw background
     image(bg1, 0, 0);
     buttons();
@@ -233,7 +251,7 @@ public void scene1() {
 } // end of scene 1 function
 
 public void scene2() {
-  if (scene == 2) {
+  if (scene == 3) {
     image(bg2,0,0);
     image(hearts, 425, 300);
     ethanBot2.drawAt2(140, 0, 1, 1);
@@ -246,7 +264,7 @@ public void scene2() {
 } // end of scene 2 function
 
 public void scene3() {
-  if (scene == 3) {
+  if (scene == 4) {
     image(bg3, 0,0);
     buttons();
     ethanBot2.drawAt2(140, 0, 1, 1);
@@ -269,7 +287,7 @@ public void scene3() {
 } // end of scene 3 function
 
 public void scene4() {
-  if (scene == 4) {
+  if (scene == 5) {
     image(bg4, 0, -50);
     buttons();
     textFont(cursive);

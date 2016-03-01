@@ -24,6 +24,7 @@ PImage hearts; // image used to demonstrate Romeo and Juliet falling in love
 PImage brokenHeart;
 PImage poison;
 PImage dagger;
+PImage title; // background for title slide
 PImage bg1; // background for first scene etc.
 PImage bg2;
 PImage bg3;
@@ -48,6 +49,8 @@ void setup() {
   poison.resize(65, 116);
   dagger = loadImage("dagger.png");
   dagger.resize(42, 145);
+  title = loadImage("title.jpg");
+  title.resize(1000, 700);
   bg2 = loadImage("ballroom.jpg");
   bg2.resize(1000, 700);
   bg3 = loadImage("cemetery.jpg");
@@ -66,6 +69,9 @@ void draw() {
 
   //draw next and prev scene buttons
   buttons();
+
+  // draw title slide
+  title();
 
   //draw robot council
   robotCouncil();
@@ -188,7 +194,14 @@ void textBox(String text, int textX, int textY) { // function to draw text box f
 } // end of text box function
 
 void title() { // new function to display the play title
-
+  if (scene == 1) {
+    image(title, 0, 0);
+    buttons();
+    fill(white);
+    textFont(cursive);
+    text("Romeo & Juliet", width/2 - textWidth("Romeo and Juliet")/2, height/2);
+    textFont(quicksand); // set font back to default ensuring other pieces of text do not inherit the cursive font
+  }
 }
 
 
