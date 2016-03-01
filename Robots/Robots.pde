@@ -35,8 +35,9 @@ OBRobot owenBot = new OBRobot();
 BDRobot benBot = new BDRobot();
 EPRobot2 ethanBot2 = new EPRobot2();
 
+// runs once
+void setup() {
 
-void setup() { //runs once
   size(1000, 700);
   cursive = createFont("cursive.ttf", 32); //create the font using the font file in the sketch folder
   quicksand = createFont("quicksand.otf", 32);
@@ -55,22 +56,32 @@ void setup() { //runs once
   hearts.resize(150, 125); // resize the image to allow it to fit the canvas properly
   bg1 = loadImage("verona.jpg");
   background(255);
+  
 } // end of setup preparing the program to run correctly
 
+// runs repeatedly
 void draw() {
+
   background(255); //clear background
+  
   //draw next and prev scene buttons
   buttons();
+  
   //draw robot council
   robotCouncil();
+  
   //draw first scene as long as user has navigated to it
   scene1();
+  
   // draw second scene as long as user has navigated to it
   scene2();
+  
   // draw third scene
   scene3();
+  
   // draw fourth scene
   scene4();
+  
 } // end of draw which loops all the functions below
 
 void mouseClicked() { //runs every time mouse is clicked (pressed and released)
