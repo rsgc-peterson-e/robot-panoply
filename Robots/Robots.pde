@@ -90,6 +90,7 @@ void draw() {
 
 } // end of draw which loops all the functions below
 
+
 void mouseClicked() { //runs every time mouse is clicked (pressed and released)
   if (mouseOverRect(nextX, nextY, nextWidth, nextHeight)) { //checks if mouse has been clicked while over the next button
     if (scene == 5) {
@@ -109,6 +110,7 @@ void mouseClicked() { //runs every time mouse is clicked (pressed and released)
     scene = 0;
   }
 }
+
 
 void robotCouncil() { // function draws a council of my robot in a porabola type from
   if (scene == 0) {
@@ -132,6 +134,7 @@ void robotCouncil() { // function draws a council of my robot in a porabola type
   }
 }
 
+
 boolean mouseOverRect(int rectX, int rectY, int rectWidth, int rectHeight) { // boolean function returning true when the mouse is hovering over rectangle specified
   if (mouseX >= rectX && mouseX <= rectX + rectWidth && mouseY >= rectY && mouseY <= rectY + rectHeight) { // checks if the points mouseX and mouseY are within the rectangle and returns true
     return true;
@@ -139,6 +142,7 @@ boolean mouseOverRect(int rectX, int rectY, int rectWidth, int rectHeight) { // 
     return false;
   }
 }
+
 
 void buttons() { //draws the next and prev buttons and listens for the mouse hovering over them
   fill(255);
@@ -193,6 +197,7 @@ void textBox(String text, int textX, int textY) { // function to draw text box f
   }
 } // end of text box function
 
+
 void title() { // new function to display the play title
   if (scene == 1) {
     image(title, 0, 0);
@@ -234,6 +239,7 @@ void scene1() {
   }
 } // end of scene 1 function
 
+
 void scene2() {
   if (scene == 3) {
     image(bg2,0,0);
@@ -246,6 +252,7 @@ void scene2() {
     buttons();
   }
 } // end of scene 2 function
+
 
 void scene3() {
   if (scene == 4) {
@@ -269,6 +276,7 @@ void scene3() {
     text("as well using Romeo's dagger.", width/2 - width/4 + 5, 200);
   }
 } // end of scene 3 function
+
 
 void scene4() {
   if (scene == 5) {
