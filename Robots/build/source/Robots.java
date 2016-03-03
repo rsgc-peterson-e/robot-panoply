@@ -55,6 +55,7 @@ EPRobot2 ethanBot2 = new EPRobot2();
 // runs once
 public void setup() {
 
+  frameRate(60);
   
   cursive = createFont("cursive.ttf", 32); //create the font using the font file in the sketch folder
   quicksand = createFont("quicksand.otf", 32);
@@ -84,7 +85,7 @@ public void draw() {
   background(255); //clear background
 
   //draw next and prev scene buttons
-  buttons();
+  //buttons(); //dont draw buttons for nicer looking movie
 
   // draw title slide
   title();
@@ -104,7 +105,12 @@ public void draw() {
   // draw fourth scene
   scene4();
 
+  if (frameCount % 60 == 0) {
+    scene++;
+  }
+  saveFrame("export/export-####.png");
 } // end of draw which loops all the functions below
+
 
 public void mouseClicked() { //runs every time mouse is clicked (pressed and released)
   if (mouseOverRect(nextX, nextY, nextWidth, nextHeight)) { //checks if mouse has been clicked while over the next button
@@ -125,6 +131,7 @@ public void mouseClicked() { //runs every time mouse is clicked (pressed and rel
     scene = 0;
   }
 }
+
 
 public void robotCouncil() { // function draws a council of my robot in a porabola type from
   if (scene == 0) {
@@ -148,6 +155,7 @@ public void robotCouncil() { // function draws a council of my robot in a porabo
   }
 }
 
+
 public boolean mouseOverRect(int rectX, int rectY, int rectWidth, int rectHeight) { // boolean function returning true when the mouse is hovering over rectangle specified
   if (mouseX >= rectX && mouseX <= rectX + rectWidth && mouseY >= rectY && mouseY <= rectY + rectHeight) { // checks if the points mouseX and mouseY are within the rectangle and returns true
     return true;
@@ -155,6 +163,7 @@ public boolean mouseOverRect(int rectX, int rectY, int rectWidth, int rectHeight
     return false;
   }
 }
+
 
 public void buttons() { //draws the next and prev buttons and listens for the mouse hovering over them
   fill(255);
@@ -209,14 +218,16 @@ public void textBox(String text, int textX, int textY) { // function to draw tex
   }
 } // end of text box function
 
+
 public void title() { // new function to display the play title
   if (scene == 1) {
     image(title, 0, 0);
-    buttons();
+    //buttons();
     fill(white);
     textFont(cursive);
     text("Romeo & Juliet", width/2 - textWidth("Romeo and Juliet")/2, height/2);
     textFont(quicksand); // set font back to default ensuring other pieces of text do not inherit the cursive font
+    text("By: Ethan Peterson", width/2 - textWidth("By: Ethan Peterson")/2, height/2 + 50);
   }
 }
 
@@ -225,7 +236,7 @@ public void scene1() {
   if (scene == 2) { // makes sure it is the first scene before drawing the scene so the wrong function is not used
     //draw background
     image(bg1, 0, 0);
-    buttons();
+    //buttons();
     timBot.drawAt(230, 450, 1, 1); // Juliet
     owenBot.drawAt(-70, 400, 0.7f, 0.7f); // Father Capulet
     kernBot.drawAt(-75, 420, 0.7f, 0.7f); // Mother Capulet
@@ -250,6 +261,7 @@ public void scene1() {
   }
 } // end of scene 1 function
 
+
 public void scene2() {
   if (scene == 3) {
     image(bg2,0,0);
@@ -259,14 +271,15 @@ public void scene2() {
     textBox("Romeo and Juliet meet at a Capulet party and fall in love...", width/2, 150); // text will also not be shown because the string is too long
     text("Romeo and Juliet meet at a", width/2 - width/4 + 5, 125);
     text("Capulet party and fall in love...", width/2 - width/4 + 5, 150);
-    buttons();
+    //buttons();
   }
 } // end of scene 2 function
+
 
 public void scene3() {
   if (scene == 4) {
     image(bg3, 0,0);
-    buttons();
+    //buttons();
     ethanBot2.drawAt2(140, 0, 1, 1);
     timBot.drawAt(150, 325, 1.5f, 1.5f);
     image(brokenHeart, 500 - 64, 300);
@@ -286,10 +299,11 @@ public void scene3() {
   }
 } // end of scene 3 function
 
+
 public void scene4() {
   if (scene == 5) {
     image(bg4, 0, -50);
-    buttons();
+    //buttons();
     textFont(cursive);
     fill(white);
     textSize(64);
